@@ -5,7 +5,7 @@ import WordInfoTab from './components/WordInfoTab';
 import MascotTip from './components/MascotTip';
 import { detectLanguage, translateSentence, tokenizeText } from './services/translator';
 export default function App() {
-  const [inputText, setInputText] = useState('Hôm nay trời đẹp quá, mình cùng đi dạo nhé!');
+  const [inputText, setInputText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
   const [isTranslating, setIsTranslating] = useState(false);
   const [translationError, setTranslationError] = useState('');

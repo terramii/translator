@@ -20,7 +20,7 @@ export default function TranslatorPanel(props) {
     <div className="translator-wrapper" style={{ marginTop: '1rem' }}>
       <div className="translator-card">
         <div className="card-header"><div className="lang-selector">{name(sourceLang)} <span className="brand-badge">Tự động phát hiện</span></div><div className="card-actions"><button className="action-btn" title="Nghe câu gốc" disabled={!inputText} onClick={() => speak(inputText, sourceLang)}><Volume2 size={18} /></button><button className="action-btn" title="Xóa văn bản" onClick={() => setInputText('')}><Trash2 size={18} /></button></div></div>
-        <textarea className="input-area" aria-label="Nhập câu cần dịch" maxLength={500} value={inputText} onChange={e => setInputText(e.target.value)} placeholder="Nhập một câu tiếng Việt hoặc tiếng Anh…" />
+        <textarea className="input-area" aria-label="Nhập câu cần dịch" maxLength={500} value={inputText} onChange={e => setInputText(e.target.value)} placeholder="Nhập câu tiếng Việt/tiếng Anh" />
         <div style={{ padding: '0 1.25rem', color: '#64748b', fontSize: '0.8rem' }}>{inputText.length}/500 · Rê chuột qua từ bên dưới để xem nghĩa. Bấm để ghim.</div>
         <div className="word-state-legend"><span><i aria-hidden="true" /> Rê chuột để xem</span><span><i className="pinned-swatch" aria-hidden="true" /> Tím: từ đã ghim</span></div>
         <InteractiveText {...props} tokens={inputTokens} emptyPlaceholder="Các từ trong câu sẽ hiện ở đây." />
