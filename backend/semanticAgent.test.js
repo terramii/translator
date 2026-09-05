@@ -50,3 +50,20 @@ test('missing key and malformed model results are explicit fallback, not context
   globalThis.fetch = async () => Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify({ phrase: 'unrelated phrase', meaningVi: 'x', meaningEn: 'x', pos: 'x', usageVi: 'x', examples: [] }) }] } }] });
   assert.equal((await analyzeContext(input)).source, 'general-fallback');
 });
+
+test('provider failures return safe diagnostic codes without leaking credentials', async t => {
+  const originalFetch = globalThis.fetch, originalKey = process.env.GEMINI_API_KEY;
+  t.after(() => { globalThis.fetch = originalFetch; if (originalKey === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = originalKey; });
+  process.env.GEMINI_API_KEY = 'secret-test-value';
+  const input = { word: 'birthday', sentence: 'Happy birthday!', lang: 'en', start: 6, end: 14 };
+  for (const [status, expected] of [[400, 'INVALID_REQUEST'], [403, 'PERMISSION_DENIED'], [404, 'MODEL_NOT_FOUND'], [429, 'QUOTA_EXCEEDED'], [503, 'PROVIDER_UNAVAILABLE']]) {
+    globalThis.fetch = async () => Response.json({ error: { message: 'secret-test-value' } }, { status });
+    const result = await analyzeContext(input);
+    assert.equal(result.errorCode, expected);
+    assert.ok(!JSON.stringify(result).includes('secret-test-value'));
+  }
+  globalThis.fetch = async () => Response.json({ error: { details: [{ reason: 'API_KEY_INVALID' }] } }, { status: 400 });
+  assert.equal((await analyzeContext(input)).errorCode, 'API_KEY_INVALID');
+  globalThis.fetch = async () => { throw new DOMException('Expired', 'TimeoutError'); };
+  assert.equal((await analyzeContext(input)).errorCode, 'TIMEOUT');
+});
