@@ -126,3 +126,17 @@ Tests cover language detection, text offsets, repeated-word selections, dataset 
 ## Before public deployment
 
 The current server is intended for local use. Add authentication and request rate limits before exposing the Gemini-backed endpoints publicly. Submitted sentences are sent to the configured translation/model providers. Secrets and generated files (`.env`, `node_modules/`, `dist/`) are excluded from version control.
+
+## Deploy on Vercel
+
+Import the GitHub repository and use these project settings:
+
+- **Root Directory:** repository root (`.`), not `frontend`.
+- **Framework:** Vite.
+- **Build Command:** `npm run build`.
+- **Output Directory:** `dist`.
+- **Node.js:** 22.x (also specified in `package.json`).
+
+In **Settings → Environment Variables**, add `GEMINI_API_KEY` for Production (and Preview if needed). Optionally set `GEMINI_MODEL=gemini-2.5-flash`. Save and redeploy. Your local `.env` is intentionally not uploaded to GitHub or Vercel.
+
+`vercel.json` routes API requests to `api/handler.js`, which runs the shared backend as a Node function. Both dataset files are included in the function bundle. Local development and `npm start` continue using the existing server setup.

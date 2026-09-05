@@ -1,6 +1,21 @@
 import { localTranslate, localWordLookup, localGrammarLookup } from './localData.js';
 import { analyzeContext, validContext } from './semanticAgent.js';
 const cache = new Map();
+async function readBody(req, limit) {
+  if (req.body !== undefined) {
+    const body = typeof req.body === 'string' ? req.body : Buffer.isBuffer(req.body) ? req.body.toString('utf8') : JSON.stringify(req.body);
+    if (body.length > limit) throw new Error('Body too large');
+    return body;
+  }
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of req) {
+    size += Buffer.byteLength(chunk);
+    if (size > limit) throw new Error('Body too large');
+    chunks.push(Buffer.from(chunk));
+  }
+  return Buffer.concat(chunks).toString('utf8');
+}
 async function json(url) {
   const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
   if (!response.ok) throw new Error('Upstream service unavailable');
@@ -56,16 +71,16 @@ export async function apiMiddleware(req, res, next) {
   const send = (status, data) => { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(data)); };
   try {
     if (url.pathname === '/api/word/context' && req.method === 'POST') {
-      let body = '';
-      for await (const chunk of req) { body += chunk; if (body.length > 16000) return send(413, { error: 'Văn bản quá dài.' }); }
+      let body;
+      try { body = await readBody(req, 16000); } catch { return send(413, { error: 'Văn bản quá dài.' }); }
       let input;
       try { input = JSON.parse(body); } catch { return send(400, { error: 'Dữ liệu không hợp lệ.' }); }
       if (!validContext(input)) return send(400, { error: 'Từ được chọn không khớp với câu.' });
       return send(200, await analyzeContext(input));
     }
     if (url.pathname === '/api/translate' && req.method === 'POST') {
-      let body = '';
-      for await (const chunk of req) { body += chunk; if (body.length > 10000) return send(413, { error: 'Văn bản quá dài.' }); }
+      let body;
+      try { body = await readBody(req, 10000); } catch { return send(413, { error: 'Văn bản quá dài.' }); }
       let data;
       try { data = JSON.parse(body); } catch { return send(400, { error: 'Dữ liệu không hợp lệ.' }); }
       const { text, sourceLang, targetLang } = data || {};
