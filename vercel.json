@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/handler.js": {
+      "maxDuration": 60,
+      "includeFiles": "data/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/translate", "destination": "/api/handler?route=translate" },
+    { "source": "/api/word/context", "destination": "/api/handler?route=word/context" },
+    { "source": "/api/word", "destination": "/api/handler?route=word" }
+  ]
+}
