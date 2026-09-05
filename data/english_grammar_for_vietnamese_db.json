@@ -1,0 +1,856 @@
+[
+  {
+    "topic_en": "Present Simple",
+    "topic_vi": "Thì hiện tại đơn",
+    "category": "Thì (Tenses)",
+    "level": "cơ bản",
+    "explanation_vi": "Dùng để diễn tả thói quen, sự thật hiển nhiên, lịch trình cố định. Đây là thì đầu tiên người học nên nắm vững vì tiếng Việt không chia động từ theo thì như tiếng Anh — thời gian được thể hiện qua từ chỉ thời gian (mỗi ngày, thường xuyên...) chứ không phải qua hình thái động từ.",
+    "structure": "S + V(s/es) / am-is-are + ...  |  Phủ định: S + do/does + not + V  |  Nghi vấn: Do/Does + S + V?",
+    "examples": [
+      {
+        "en": "She works at a bank.",
+        "vi": "Cô ấy làm việc ở ngân hàng."
+      },
+      {
+        "en": "Water boils at 100 degrees Celsius.",
+        "vi": "Nước sôi ở 100 độ C."
+      },
+      {
+        "en": "The train leaves at 9 AM every day.",
+        "vi": "Tàu khởi hành lúc 9 giờ sáng mỗi ngày."
+      }
+    ],
+    "common_mistakes_vi": "Người Việt hay quên thêm 's/es' ở ngôi thứ ba số ít (he, she, it) vì tiếng Việt không có quy tắc chia động từ theo chủ ngữ. Ví dụ sai: 'She work' → đúng: 'She works'.",
+    "notes_vi": "",
+    "id": 1
+  },
+  {
+    "topic_en": "Present Continuous",
+    "topic_vi": "Thì hiện tại tiếp diễn",
+    "category": "Thì (Tenses)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả hành động đang xảy ra ngay lúc nói, hoặc kế hoạch đã sắp xếp trong tương lai gần.",
+    "structure": "S + am/is/are + V-ing",
+    "examples": [
+      {
+        "en": "I am studying English right now.",
+        "vi": "Tôi đang học tiếng Anh ngay bây giờ."
+      },
+      {
+        "en": "They are meeting the client tomorrow.",
+        "vi": "Họ sẽ gặp khách hàng vào ngày mai (đã lên kế hoạch)."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên trợ động từ 'to be' vì tiếng Việt chỉ cần thêm từ 'đang' trước động từ, không cần trợ động từ. Ví dụ sai: 'I studying' → đúng: 'I am studying'.",
+    "notes_vi": "",
+    "id": 2
+  },
+  {
+    "topic_en": "Present Perfect",
+    "topic_vi": "Thì hiện tại hoàn thành",
+    "category": "Thì (Tenses)",
+    "level": "trung cấp",
+    "explanation_vi": "Diễn tả hành động đã xảy ra trong quá khứ nhưng có liên quan hoặc ảnh hưởng đến hiện tại, hoặc kinh nghiệm chưa xác định thời gian cụ thể. Đây là thì khó nhất với người Việt vì tiếng Việt không phân biệt rõ giữa 'đã làm' và 'đã từng làm và vẫn còn liên quan đến hiện tại'.",
+    "structure": "S + have/has + V3/V-ed",
+    "examples": [
+      {
+        "en": "I have lived in Hanoi for five years.",
+        "vi": "Tôi đã sống ở Hà Nội được năm năm (và vẫn đang sống)."
+      },
+      {
+        "en": "She has already finished her homework.",
+        "vi": "Cô ấy đã làm xong bài tập rồi."
+      },
+      {
+        "en": "Have you ever been to Japan?",
+        "vi": "Bạn đã từng đến Nhật Bản chưa?"
+      }
+    ],
+    "common_mistakes_vi": "Người Việt thường nhầm giữa Present Perfect và Past Simple vì cả hai đều dịch là 'đã'. Cần nhớ: Past Simple dùng khi có mốc thời gian cụ thể trong quá khứ (yesterday, last year); Present Perfect dùng khi không có mốc cụ thể hoặc hành động còn liên quan đến hiện tại (for, since, already, just, ever, never).",
+    "notes_vi": "",
+    "id": 3
+  },
+  {
+    "topic_en": "Past Simple",
+    "topic_vi": "Thì quá khứ đơn",
+    "category": "Thì (Tenses)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả hành động đã xảy ra và kết thúc hoàn toàn trong quá khứ, thường đi kèm mốc thời gian cụ thể.",
+    "structure": "S + V2/V-ed  |  Phủ định: S + did not + V (nguyên thể)  |  Nghi vấn: Did + S + V?",
+    "examples": [
+      {
+        "en": "I visited my grandmother last weekend.",
+        "vi": "Tôi đã đến thăm bà tôi vào cuối tuần trước."
+      },
+      {
+        "en": "He didn't go to school yesterday.",
+        "vi": "Hôm qua anh ấy đã không đi học."
+      }
+    ],
+    "common_mistakes_vi": "Lỗi phổ biến: chia động từ hai lần trong câu phủ định/nghi vấn, ví dụ sai 'He didn't went' → đúng 'He didn't go' (động từ phải ở nguyên thể sau 'did/didn't').",
+    "notes_vi": "",
+    "id": 4
+  },
+  {
+    "topic_en": "Past Continuous",
+    "topic_vi": "Thì quá khứ tiếp diễn",
+    "category": "Thì (Tenses)",
+    "level": "trung cấp",
+    "explanation_vi": "Diễn tả hành động đang xảy ra tại một thời điểm cụ thể trong quá khứ, thường dùng để làm nền cho một hành động khác xen vào (Past Simple).",
+    "structure": "S + was/were + V-ing",
+    "examples": [
+      {
+        "en": "I was cooking dinner when she called.",
+        "vi": "Tôi đang nấu bữa tối thì cô ấy gọi điện."
+      },
+      {
+        "en": "They were watching TV at 8 PM last night.",
+        "vi": "Họ đang xem TV lúc 8 giờ tối qua."
+      }
+    ],
+    "common_mistakes_vi": "Cấu trúc 'was/were + V-ing... when + Past Simple' rất hay bị nhầm thứ tự thì giữa hai mệnh đề — hành động đang diễn ra (nền) dùng tiếp diễn, hành động xen vào (ngắn, đột ngột) dùng đơn.",
+    "notes_vi": "",
+    "id": 5
+  },
+  {
+    "topic_en": "Past Perfect",
+    "topic_vi": "Thì quá khứ hoàn thành",
+    "category": "Thì (Tenses)",
+    "level": "nâng cao",
+    "explanation_vi": "Diễn tả hành động xảy ra trước một hành động khác trong quá khứ ('quá khứ của quá khứ'). Tiếng Việt thường dùng 'đã... rồi' hoặc 'trước khi' để diễn đạt ý này mà không cần thay đổi hình thái động từ.",
+    "structure": "S + had + V3/V-ed",
+    "examples": [
+      {
+        "en": "By the time I arrived, the movie had already started.",
+        "vi": "Đến lúc tôi đến nơi, bộ phim đã bắt đầu rồi."
+      },
+      {
+        "en": "She had finished the report before her boss asked for it.",
+        "vi": "Cô ấy đã hoàn thành báo cáo trước khi sếp yêu cầu."
+      }
+    ],
+    "common_mistakes_vi": "Học viên Việt hay bỏ qua thì này và dùng Past Simple cho cả hai hành động, làm mất đi sự phân biệt về trình tự thời gian mà tiếng Anh yêu cầu rõ ràng.",
+    "notes_vi": "",
+    "id": 6
+  },
+  {
+    "topic_en": "Future Simple (will)",
+    "topic_vi": "Thì tương lai đơn",
+    "category": "Thì (Tenses)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả quyết định tức thời, dự đoán không có căn cứ rõ ràng, hoặc lời hứa.",
+    "structure": "S + will + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "I think it will rain tomorrow.",
+        "vi": "Tôi nghĩ ngày mai trời sẽ mưa."
+      },
+      {
+        "en": "I will help you with your homework.",
+        "vi": "Tôi sẽ giúp bạn làm bài tập."
+      }
+    ],
+    "common_mistakes_vi": "Người Việt hay dùng 'will' cho mọi trường hợp tương lai, trong khi tiếng Anh còn phân biệt với 'be going to' (kế hoạch đã định) và Present Continuous (lịch đã sắp xếp).",
+    "notes_vi": "",
+    "id": 7
+  },
+  {
+    "topic_en": "be going to",
+    "topic_vi": "Cấu trúc 'sắp/dự định'",
+    "category": "Thì (Tenses)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả dự định đã có kế hoạch từ trước, hoặc dự đoán dựa trên dấu hiệu hiện tại (khác với 'will' là quyết định tức thời).",
+    "structure": "S + am/is/are + going to + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "I am going to study abroad next year.",
+        "vi": "Tôi dự định sẽ đi du học vào năm sau."
+      },
+      {
+        "en": "Look at those clouds — it's going to rain.",
+        "vi": "Nhìn những đám mây kia kìa — trời sắp mưa."
+      }
+    ],
+    "common_mistakes_vi": "Học viên thường không phân biệt được khi nào dùng 'will' và khi nào dùng 'be going to' vì cả hai đều dịch là 'sẽ' trong tiếng Việt.",
+    "notes_vi": "",
+    "id": 8
+  },
+  {
+    "topic_en": "Future Continuous",
+    "topic_vi": "Thì tương lai tiếp diễn",
+    "category": "Thì (Tenses)",
+    "level": "nâng cao",
+    "explanation_vi": "Diễn tả một hành động sẽ đang xảy ra tại một thời điểm cụ thể trong tương lai.",
+    "structure": "S + will be + V-ing",
+    "examples": [
+      {
+        "en": "This time tomorrow, I will be flying to Singapore.",
+        "vi": "Giờ này ngày mai, tôi sẽ đang bay đến Singapore."
+      }
+    ],
+    "common_mistakes_vi": "Thì ít gặp trong giao tiếp hàng ngày nên học viên dễ quên cấu trúc; cần phân biệt với Future Simple thông thường.",
+    "notes_vi": "",
+    "id": 9
+  },
+  {
+    "topic_en": "Future Perfect",
+    "topic_vi": "Thì tương lai hoàn thành",
+    "category": "Thì (Tenses)",
+    "level": "nâng cao",
+    "explanation_vi": "Diễn tả hành động sẽ hoàn thành trước một thời điểm hoặc hành động khác trong tương lai.",
+    "structure": "S + will have + V3/V-ed",
+    "examples": [
+      {
+        "en": "By next year, I will have graduated from university.",
+        "vi": "Đến năm sau, tôi sẽ đã tốt nghiệp đại học."
+      }
+    ],
+    "common_mistakes_vi": "Cấu trúc phức tạp, hiếm dùng trong giao tiếp cơ bản nhưng thường xuất hiện trong bài thi; học viên dễ nhầm với Future Simple.",
+    "notes_vi": "",
+    "id": 10
+  },
+  {
+    "topic_en": "can / could",
+    "topic_vi": "Động từ khiếm khuyết can/could",
+    "category": "Động từ khiếm khuyết (Modal Verbs)",
+    "level": "cơ bản",
+    "explanation_vi": "'Can' diễn tả khả năng hoặc sự cho phép ở hiện tại; 'could' là dạng quá khứ của 'can' hoặc dùng để hỏi/yêu cầu lịch sự hơn.",
+    "structure": "S + can/could + V (nguyên thể, không chia)",
+    "examples": [
+      {
+        "en": "I can speak three languages.",
+        "vi": "Tôi có thể nói ba thứ tiếng."
+      },
+      {
+        "en": "Could you help me, please?",
+        "vi": "Bạn có thể giúp tôi được không?"
+      }
+    ],
+    "common_mistakes_vi": "Lỗi thường gặp: chia động từ theo chủ ngữ sau modal verb, ví dụ sai 'She can speaks' → đúng 'She can speak' (động từ sau modal verb luôn ở dạng nguyên thể).",
+    "notes_vi": "",
+    "id": 11
+  },
+  {
+    "topic_en": "must / have to",
+    "topic_vi": "must và have to (sự bắt buộc)",
+    "category": "Động từ khiếm khuyết (Modal Verbs)",
+    "level": "trung cấp",
+    "explanation_vi": "Cả hai đều diễn tả sự bắt buộc, nhưng 'must' thường thể hiện ý kiến/quy tắc từ người nói, còn 'have to' thể hiện quy định khách quan từ bên ngoài.",
+    "structure": "S + must/have to + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "You must wear a seatbelt (it's the law).",
+        "vi": "Bạn phải thắt dây an toàn (theo luật)."
+      },
+      {
+        "en": "I have to go to work tomorrow (my schedule requires it).",
+        "vi": "Tôi phải đi làm vào ngày mai (theo lịch trình)."
+      }
+    ],
+    "common_mistakes_vi": "Học viên thường dùng 'must' và 'have to' như nhau vì cả hai đều dịch là 'phải' trong tiếng Việt, trong khi phủ định lại khác nghĩa hoàn toàn: 'must not' (cấm) khác với 'don't have to' (không bắt buộc).",
+    "notes_vi": "",
+    "id": 12
+  },
+  {
+    "topic_en": "should / ought to",
+    "topic_vi": "should/ought to (lời khuyên)",
+    "category": "Động từ khiếm khuyết (Modal Verbs)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả lời khuyên hoặc điều nên làm, không mang tính bắt buộc như 'must'.",
+    "structure": "S + should/ought to + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "You should see a doctor.",
+        "vi": "Bạn nên đi khám bác sĩ."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên 'to' sau 'ought' (vì đây là ngoại lệ so với các modal verb khác), ví dụ sai 'You ought see' → đúng 'You ought to see'.",
+    "notes_vi": "",
+    "id": 13
+  },
+  {
+    "topic_en": "may / might",
+    "topic_vi": "may/might (khả năng)",
+    "category": "Động từ khiếm khuyết (Modal Verbs)",
+    "level": "trung cấp",
+    "explanation_vi": "Diễn tả khả năng có thể xảy ra, mức độ chắc chắn thấp hơn 'will'. 'Might' thể hiện khả năng thấp hơn 'may' một chút.",
+    "structure": "S + may/might + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "It may rain later today.",
+        "vi": "Có thể chiều nay trời sẽ mưa."
+      }
+    ],
+    "common_mistakes_vi": "Người Việt hay dịch 'có thể' cho cả 'can' và 'may/might', dẫn đến nhầm lẫn: 'can' là khả năng/năng lực, còn 'may/might' là khả năng xảy ra (dự đoán).",
+    "notes_vi": "",
+    "id": 14
+  },
+  {
+    "topic_en": "should have + V3",
+    "topic_vi": "should have + V3 (tiếc nuối)",
+    "category": "Động từ khiếm khuyết (Modal Verbs)",
+    "level": "nâng cao",
+    "explanation_vi": "Diễn tả sự tiếc nuối hoặc chỉ trích về một việc đáng lẽ nên làm nhưng đã không làm trong quá khứ.",
+    "structure": "S + should have + V3/V-ed",
+    "examples": [
+      {
+        "en": "I should have studied harder for the exam.",
+        "vi": "Đáng lẽ tôi nên học chăm hơn cho kỳ thi (nhưng đã không làm)."
+      }
+    ],
+    "common_mistakes_vi": "Cấu trúc này khó vì phát âm 'have' trong 'should have' thường bị nuốt âm thành /əv/, khiến học viên nghe và viết nhầm thành 'should of'.",
+    "notes_vi": "",
+    "id": 15
+  },
+  {
+    "topic_en": "Zero Conditional",
+    "topic_vi": "Câu điều kiện loại 0",
+    "category": "Câu điều kiện (Conditionals)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả sự thật hiển nhiên, quy luật tự nhiên hoặc thói quen — điều kiện luôn dẫn đến kết quả.",
+    "structure": "If + S + V (hiện tại đơn), S + V (hiện tại đơn)",
+    "examples": [
+      {
+        "en": "If you heat ice, it melts.",
+        "vi": "Nếu bạn làm nóng đá, nó sẽ tan chảy."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay nhầm sang câu điều kiện loại 1 và dùng 'will' ở mệnh đề kết quả dù đang nói về sự thật hiển nhiên.",
+    "notes_vi": "",
+    "id": 16
+  },
+  {
+    "topic_en": "First Conditional",
+    "topic_vi": "Câu điều kiện loại 1",
+    "category": "Câu điều kiện (Conditionals)",
+    "level": "cơ bản",
+    "explanation_vi": "Diễn tả điều kiện có khả năng xảy ra ở hiện tại/tương lai và kết quả có thể xảy ra theo đó.",
+    "structure": "If + S + V (hiện tại đơn), S + will + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "If it rains tomorrow, I will stay home.",
+        "vi": "Nếu ngày mai trời mưa, tôi sẽ ở nhà."
+      }
+    ],
+    "common_mistakes_vi": "Lỗi phổ biến nhất: dùng 'will' ở cả hai mệnh đề, ví dụ sai 'If it will rain...' → đúng 'If it rains...' (mệnh đề if luôn chia hiện tại đơn, không dùng will).",
+    "notes_vi": "",
+    "id": 17
+  },
+  {
+    "topic_en": "Second Conditional",
+    "topic_vi": "Câu điều kiện loại 2",
+    "category": "Câu điều kiện (Conditionals)",
+    "level": "trung cấp",
+    "explanation_vi": "Diễn tả tình huống giả định không có thật hoặc khó xảy ra ở hiện tại/tương lai.",
+    "structure": "If + S + V-ed (quá khứ đơn), S + would + V (nguyên thể)",
+    "examples": [
+      {
+        "en": "If I had a million dollars, I would travel around the world.",
+        "vi": "Nếu tôi có một triệu đô la, tôi sẽ đi du lịch vòng quanh thế giới."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên rằng động từ 'to be' trong mệnh đề if ở câu điều kiện loại 2 thường dùng 'were' cho mọi chủ ngữ (If I were you...), khác với quy tắc chia thông thường.",
+    "notes_vi": "",
+    "id": 18
+  },
+  {
+    "topic_en": "Third Conditional",
+    "topic_vi": "Câu điều kiện loại 3",
+    "category": "Câu điều kiện (Conditionals)",
+    "level": "nâng cao",
+    "explanation_vi": "Diễn tả tình huống giả định trái với sự thật đã xảy ra trong quá khứ, thường mang ý tiếc nuối.",
+    "structure": "If + S + had + V3, S + would have + V3",
+    "examples": [
+      {
+        "en": "If I had studied harder, I would have passed the exam.",
+        "vi": "Nếu tôi đã học chăm hơn, tôi đã đậu kỳ thi rồi (nhưng thực tế không đậu)."
+      }
+    ],
+    "common_mistakes_vi": "Cấu trúc dài và nhiều trợ động từ khiến học viên dễ bỏ sót 'have' trong mệnh đề kết quả hoặc nhầm với câu điều kiện loại 2.",
+    "notes_vi": "",
+    "id": 19
+  },
+  {
+    "topic_en": "Passive Voice",
+    "topic_vi": "Câu bị động",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "trung cấp",
+    "explanation_vi": "Dùng khi muốn nhấn mạnh vào đối tượng chịu tác động của hành động thay vì người/vật thực hiện hành động, hoặc khi không biết/không cần nêu rõ chủ thể.",
+    "structure": "S (đối tượng) + be + V3/V-ed + (by + tác nhân)",
+    "examples": [
+      {
+        "en": "The house was built in 1990.",
+        "vi": "Ngôi nhà được xây vào năm 1990."
+      },
+      {
+        "en": "English is spoken in many countries.",
+        "vi": "Tiếng Anh được nói ở nhiều quốc gia."
+      }
+    ],
+    "common_mistakes_vi": "Người Việt hay quên chia động từ 'to be' theo đúng thì của câu chủ động gốc, và hay quên đổi động từ chính sang dạng V3/V-ed.",
+    "notes_vi": "",
+    "id": 20
+  },
+  {
+    "topic_en": "Reported Speech",
+    "topic_vi": "Câu tường thuật (lời nói gián tiếp)",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "trung cấp",
+    "explanation_vi": "Dùng để thuật lại lời nói của người khác mà không trích dẫn nguyên văn; thì của động từ thường lùi về quá khứ một bậc so với câu trực tiếp.",
+    "structure": "S + said (that) + S + V (lùi thì)",
+    "examples": [
+      {
+        "en": "Direct: \"I am tired,\" she said. → Reported: She said (that) she was tired.",
+        "vi": "Trực tiếp: 'Tôi mệt,' cô ấy nói. → Gián tiếp: Cô ấy nói rằng cô ấy mệt."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên đổi đại từ nhân xưng và trạng từ chỉ thời gian/nơi chốn (this→that, now→then, here→there) khi chuyển từ câu trực tiếp sang gián tiếp.",
+    "notes_vi": "",
+    "id": 21
+  },
+  {
+    "topic_en": "Comparative Adjectives",
+    "topic_vi": "So sánh hơn",
+    "category": "So sánh (Comparison)",
+    "level": "cơ bản",
+    "explanation_vi": "Dùng để so sánh hai đối tượng, chỉ sự hơn kém.",
+    "structure": "Tính từ ngắn: S + V + adj-er + than. Tính từ dài: S + V + more + adj + than.",
+    "examples": [
+      {
+        "en": "This book is more interesting than that one.",
+        "vi": "Cuốn sách này thú vị hơn cuốn kia."
+      },
+      {
+        "en": "She is taller than her brother.",
+        "vi": "Cô ấy cao hơn anh trai mình."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay dùng cả 'more' và đuôi '-er' cùng lúc, ví dụ sai 'more taller' → chỉ dùng một trong hai cách.",
+    "notes_vi": "",
+    "id": 22
+  },
+  {
+    "topic_en": "Superlative Adjectives",
+    "topic_vi": "So sánh nhất",
+    "category": "So sánh (Comparison)",
+    "level": "cơ bản",
+    "explanation_vi": "Dùng để so sánh một đối tượng với tất cả các đối tượng còn lại trong một nhóm, diễn tả mức độ cao/thấp nhất.",
+    "structure": "Tính từ ngắn: S + V + the + adj-est. Tính từ dài: S + V + the most + adj.",
+    "examples": [
+      {
+        "en": "This is the most beautiful place I have ever seen.",
+        "vi": "Đây là nơi đẹp nhất mà tôi từng thấy."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên mạo từ 'the' đứng trước tính từ so sánh nhất, vì tiếng Việt không có khái niệm mạo từ.",
+    "notes_vi": "",
+    "id": 23
+  },
+  {
+    "topic_en": "as...as",
+    "topic_vi": "So sánh bằng (as...as)",
+    "category": "So sánh (Comparison)",
+    "level": "cơ bản",
+    "explanation_vi": "Dùng để so sánh hai đối tượng ngang bằng nhau về một đặc điểm nào đó.",
+    "structure": "S + V + as + adj/adv + as + đối tượng so sánh",
+    "examples": [
+      {
+        "en": "He is as tall as his father.",
+        "vi": "Anh ấy cao bằng bố mình."
+      }
+    ],
+    "common_mistakes_vi": "Ở thể phủ định, có thể dùng 'not as...as' hoặc 'not so...as'; học viên hay quên giữ nguyên tính từ ở dạng gốc (không thêm -er).",
+    "notes_vi": "",
+    "id": 24
+  },
+  {
+    "topic_en": "Countable & Uncountable Nouns",
+    "topic_vi": "Danh từ đếm được và không đếm được",
+    "category": "Danh từ (Nouns)",
+    "level": "cơ bản",
+    "explanation_vi": "Tiếng Việt không phân biệt số ít/số nhiều hay danh từ đếm được/không đếm được rõ ràng như tiếng Anh, nên đây là điểm ngữ pháp học viên Việt hay gặp khó khăn nhất. Danh từ đếm được có dạng số ít và số nhiều; danh từ không đếm được chỉ có một dạng và không dùng với 'a/an' hay số đếm trực tiếp.",
+    "structure": "Đếm được: a/an + danh từ số ít, hoặc danh từ + s/es (số nhiều). Không đếm được: dùng trực tiếp hoặc với 'some/much'.",
+    "examples": [
+      {
+        "en": "I have two books and some water.",
+        "vi": "Tôi có hai quyển sách và một ít nước."
+      },
+      {
+        "en": "She gave me some advice.",
+        "vi": "Cô ấy đã cho tôi một vài lời khuyên."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay thêm 's' vào các danh từ không đếm được phổ biến như 'advice', 'information', 'furniture' vì trong tiếng Việt các từ tương đương ('lời khuyên', 'thông tin') có thể đếm bằng loại từ ('một lời khuyên', 'nhiều lời khuyên').",
+    "notes_vi": "",
+    "id": 25
+  },
+  {
+    "topic_en": "Articles: a/an/the",
+    "topic_vi": "Mạo từ a/an/the",
+    "category": "Danh từ (Nouns)",
+    "level": "cơ bản",
+    "explanation_vi": "Tiếng Việt không có mạo từ, vì vậy đây là một trong những điểm khó nhất với người Việt học tiếng Anh. 'A/an' dùng cho danh từ đếm được số ít, đề cập lần đầu hoặc không xác định. 'The' dùng khi cả người nói và người nghe đều biết đối tượng được nhắc đến.",
+    "structure": "a + danh từ bắt đầu bằng phụ âm | an + danh từ bắt đầu bằng nguyên âm | the + danh từ xác định",
+    "examples": [
+      {
+        "en": "I saw a dog. The dog was black.",
+        "vi": "Tôi thấy một con chó. Con chó đó màu đen."
+      },
+      {
+        "en": "She is an engineer.",
+        "vi": "Cô ấy là một kỹ sư."
+      }
+    ],
+    "common_mistakes_vi": "Vì tiếng Việt không có mạo từ, học viên thường bỏ qua hoàn toàn 'a/an/the' trong câu, hoặc dùng sai giữa 'a' và 'an' dựa theo chữ cái thay vì âm đọc (ví dụ: 'an hour' vì 'hour' đọc bắt đầu bằng nguyên âm dù chữ viết là phụ âm 'h').",
+    "notes_vi": "",
+    "id": 26
+  },
+  {
+    "topic_en": "Plural Nouns",
+    "topic_vi": "Danh từ số nhiều",
+    "category": "Danh từ (Nouns)",
+    "level": "cơ bản",
+    "explanation_vi": "Danh từ tiếng Anh thay đổi hình thái khi ở số nhiều (thêm -s/-es hoặc bất quy tắc), trong khi danh từ tiếng Việt không thay đổi hình thái mà chỉ thêm từ chỉ số lượng phía trước.",
+    "structure": "Danh từ + s (quy tắc) | Danh từ bất quy tắc: man→men, child→children, foot→feet...",
+    "examples": [
+      {
+        "en": "I have three children.",
+        "vi": "Tôi có ba đứa con."
+      },
+      {
+        "en": "There are many people here.",
+        "vi": "Có nhiều người ở đây."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên chia số nhiều vì trong tiếng Việt, 'ba quyển sách' không làm thay đổi từ 'sách'; lỗi thường gặp: 'three book' → đúng 'three books'.",
+    "notes_vi": "",
+    "id": 27
+  },
+  {
+    "topic_en": "Gerunds vs Infinitives",
+    "topic_vi": "Danh động từ (V-ing) và động từ nguyên mẫu có 'to'",
+    "category": "Mẫu câu động từ (Verb Patterns)",
+    "level": "trung cấp",
+    "explanation_vi": "Một số động từ trong tiếng Anh chỉ được theo sau bởi V-ing (gerund), một số chỉ theo sau bởi to-infinitive, và một số có thể dùng cả hai (đôi khi thay đổi nghĩa). Đây là điểm ngữ pháp cần học thuộc theo từng động từ vì không có quy tắc chung.",
+    "structure": "V + V-ing (enjoy, avoid, finish, suggest...) | V + to V (want, decide, plan, hope...) | V + V-ing/to V (like, start, begin...)",
+    "examples": [
+      {
+        "en": "I enjoy reading books.",
+        "vi": "Tôi thích đọc sách."
+      },
+      {
+        "en": "I want to learn English.",
+        "vi": "Tôi muốn học tiếng Anh."
+      },
+      {
+        "en": "She stopped smoking. / She stopped to smoke. (khác nghĩa)",
+        "vi": "Cô ấy đã bỏ hút thuốc. / Cô ấy dừng lại để hút thuốc. (hai nghĩa khác nhau)"
+      }
+    ],
+    "common_mistakes_vi": "Vì tiếng Việt không phân biệt hình thức động từ theo ngữ pháp, học viên thường dùng nhầm lẫn giữa hai dạng này, đặc biệt với các động từ có nghĩa thay đổi tùy theo V-ing hay to-V đi kèm (remember, stop, try).",
+    "notes_vi": "",
+    "id": 28
+  },
+  {
+    "topic_en": "Phrasal Verbs (giới thiệu)",
+    "topic_vi": "Cụm động từ (Phrasal Verbs)",
+    "category": "Mẫu câu động từ (Verb Patterns)",
+    "level": "trung cấp",
+    "explanation_vi": "Cụm động từ là sự kết hợp giữa động từ và giới từ/trạng từ, tạo nên nghĩa mới không thể suy ra từ nghĩa gốc của từng từ riêng lẻ. Đây là điểm khó vì tiếng Việt không có cấu trúc tương đương — mỗi cụm gần như phải học thuộc như một từ vựng riêng.",
+    "structure": "Động từ + giới từ/trạng từ (+ tân ngữ)",
+    "examples": [
+      {
+        "en": "I need to give up smoking.",
+        "vi": "Tôi cần phải từ bỏ việc hút thuốc."
+      },
+      {
+        "en": "Please turn off the lights.",
+        "vi": "Làm ơn tắt đèn đi."
+      },
+      {
+        "en": "She looks after her little brother.",
+        "vi": "Cô ấy chăm sóc em trai mình."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay dịch nghĩa đen từng từ trong cụm động từ, dẫn đến hiểu sai hoàn toàn nghĩa cả cụm (ví dụ: 'give up' không phải là 'cho lên' mà là 'từ bỏ').",
+    "notes_vi": "",
+    "id": 29
+  },
+  {
+    "topic_en": "Causative: have/get something done",
+    "topic_vi": "Cấu trúc nhờ vả (have/get something done)",
+    "category": "Mẫu câu động từ (Verb Patterns)",
+    "level": "nâng cao",
+    "explanation_vi": "Dùng khi chủ ngữ không tự thực hiện hành động mà nhờ/thuê người khác làm hộ.",
+    "structure": "S + have/get + tân ngữ + V3/V-ed",
+    "examples": [
+      {
+        "en": "I had my hair cut yesterday.",
+        "vi": "Hôm qua tôi đã đi cắt tóc (nhờ người khác cắt)."
+      },
+      {
+        "en": "She got her car repaired.",
+        "vi": "Cô ấy đã mang xe đi sửa (nhờ thợ sửa)."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay dùng nhầm dạng chủ động 'I cut my hair' (tự mình cắt tóc) thay vì cấu trúc bị động 'I had my hair cut' (nhờ người khác cắt), do tiếng Việt không phân biệt rõ hai ý này qua ngữ pháp.",
+    "notes_vi": "",
+    "id": 30
+  },
+  {
+    "topic_en": "Relative Clauses",
+    "topic_vi": "Mệnh đề quan hệ",
+    "category": "Mệnh đề (Clauses)",
+    "level": "trung cấp",
+    "explanation_vi": "Dùng để bổ sung thông tin cho danh từ đứng trước mà không cần tách thành câu riêng, sử dụng các đại từ quan hệ như who, which, that, whose.",
+    "structure": "Danh từ + who/which/that/whose + mệnh đề",
+    "examples": [
+      {
+        "en": "The woman who lives next door is a doctor.",
+        "vi": "Người phụ nữ sống ở nhà bên cạnh là bác sĩ."
+      },
+      {
+        "en": "This is the book that I told you about.",
+        "vi": "Đây là quyển sách mà tôi đã kể cho bạn nghe."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay lặp lại đại từ ở mệnh đề chính, ví dụ sai 'The woman who she lives next door...' → đúng bỏ 'she' vì 'who' đã thay thế cho danh từ đó rồi.",
+    "notes_vi": "",
+    "id": 31
+  },
+  {
+    "topic_en": "Wish / If only",
+    "topic_vi": "Cấu trúc wish / if only (ước muốn)",
+    "category": "Mệnh đề (Clauses)",
+    "level": "nâng cao",
+    "explanation_vi": "Dùng để diễn tả điều ước không có thật ở hiện tại (dùng quá khứ đơn) hoặc tiếc nuối về quá khứ (dùng quá khứ hoàn thành).",
+    "structure": "Wish hiện tại: S + wish(es) + S + V-ed. Wish quá khứ: S + wish(es) + S + had + V3.",
+    "examples": [
+      {
+        "en": "I wish I had more free time.",
+        "vi": "Tôi ước gì mình có nhiều thời gian rảnh hơn."
+      },
+      {
+        "en": "I wish I had studied harder in school.",
+        "vi": "Tôi ước gì mình đã học chăm hơn hồi đi học."
+      }
+    ],
+    "common_mistakes_vi": "Học viên thường chia động từ theo thì hiện tại thay vì lùi về quá khứ, vì trong tiếng Việt câu ước không yêu cầu thay đổi hình thái động từ ('tôi ước tôi có' chứ không lùi thì).",
+    "notes_vi": "",
+    "id": 32
+  },
+  {
+    "topic_en": "Question Formation",
+    "topic_vi": "Cách đặt câu hỏi (Yes/No & Wh-questions)",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "cơ bản",
+    "explanation_vi": "Tiếng Anh yêu cầu đảo trợ động từ lên trước chủ ngữ để tạo câu hỏi, trong khi tiếng Việt chỉ cần thêm từ hỏi hoặc tiểu từ nghi vấn ('không', 'à', 'gì') mà không đảo trật tự từ.",
+    "structure": "Yes/No: Trợ động từ + S + V...?  |  Wh-question: Từ để hỏi + trợ động từ + S + V...?",
+    "examples": [
+      {
+        "en": "Do you like coffee?",
+        "vi": "Bạn có thích cà phê không?"
+      },
+      {
+        "en": "Where do you live?",
+        "vi": "Bạn sống ở đâu?"
+      }
+    ],
+    "common_mistakes_vi": "Vì tiếng Việt không đảo trật tự từ khi hỏi, học viên hay giữ nguyên trật tự câu khẳng định và chỉ thêm dấu hỏi, ví dụ sai 'You like coffee?' (chỉ đúng trong văn nói rất thân mật) thay vì 'Do you like coffee?'.",
+    "notes_vi": "",
+    "id": 33
+  },
+  {
+    "topic_en": "Tag Questions",
+    "topic_vi": "Câu hỏi đuôi",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "trung cấp",
+    "explanation_vi": "Dùng để xác nhận lại thông tin hoặc tìm kiếm sự đồng tình; nếu mệnh đề chính khẳng định thì đuôi câu hỏi phủ định và ngược lại.",
+    "structure": "Mệnh đề khẳng định + trợ động từ phủ định + S? | Mệnh đề phủ định + trợ động từ khẳng định + S?",
+    "examples": [
+      {
+        "en": "You are a student, aren't you?",
+        "vi": "Bạn là sinh viên, phải không?"
+      },
+      {
+        "en": "She doesn't like coffee, does she?",
+        "vi": "Cô ấy không thích cà phê, phải không?"
+      }
+    ],
+    "common_mistakes_vi": "Học viên Việt hay dùng một cụm cố định như 'phải không' cho mọi trường hợp, nên hay quên phải chọn đúng trợ động từ và đảo tính khẳng định/phủ định tương ứng với mệnh đề chính.",
+    "notes_vi": "",
+    "id": 34
+  },
+  {
+    "topic_en": "too / enough",
+    "topic_vi": "too và enough (mức độ)",
+    "category": "Trạng từ & Tính từ (Adverbs & Adjectives)",
+    "level": "trung cấp",
+    "explanation_vi": "'Too' diễn tả mức độ vượt quá mức cần thiết (mang nghĩa tiêu cực); 'enough' diễn tả mức độ đầy đủ, vừa đủ.",
+    "structure": "too + adj/adv (+ to V) | adj/adv + enough (+ to V)",
+    "examples": [
+      {
+        "en": "This coffee is too hot to drink.",
+        "vi": "Cà phê này quá nóng để uống."
+      },
+      {
+        "en": "She isn't old enough to drive.",
+        "vi": "Cô ấy chưa đủ tuổi để lái xe."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay đặt sai vị trí của 'enough': 'enough' luôn đứng SAU tính từ/trạng từ (tall enough) nhưng đứng TRƯỚC danh từ (enough time) — điều này gây nhầm lẫn vì tiếng Việt luôn đặt 'đủ' theo một trật tự cố định.",
+    "notes_vi": "",
+    "id": 35
+  },
+  {
+    "topic_en": "so / such",
+    "topic_vi": "so và such (nhấn mạnh)",
+    "category": "Trạng từ & Tính từ (Adverbs & Adjectives)",
+    "level": "trung cấp",
+    "explanation_vi": "Cả hai đều dùng để nhấn mạnh, nhưng 'so' đi trực tiếp với tính từ/trạng từ, còn 'such' đi với cụm danh từ (a/an + adj + noun).",
+    "structure": "so + adj/adv | such + (a/an) + adj + noun",
+    "examples": [
+      {
+        "en": "The weather is so hot today.",
+        "vi": "Hôm nay trời nóng quá."
+      },
+      {
+        "en": "It was such a hot day.",
+        "vi": "Hôm đó là một ngày nóng đến vậy."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay dùng 'so' trước cụm danh từ có tính từ, ví dụ sai 'so a hot day' → đúng phải dùng 'such a hot day'.",
+    "notes_vi": "",
+    "id": 36
+  },
+  {
+    "topic_en": "used to / be used to / get used to",
+    "topic_vi": "used to, be used to, get used to",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "nâng cao",
+    "explanation_vi": "Ba cấu trúc dễ nhầm lẫn: 'used to + V' diễn tả thói quen/tình trạng trong quá khứ nay không còn; 'be used to + V-ing/noun' diễn tả sự quen thuộc ở hiện tại; 'get used to + V-ing/noun' diễn tả quá trình dần trở nên quen.",
+    "structure": "S + used to + V (nguyên thể) | S + be used to + V-ing/N | S + get used to + V-ing/N",
+    "examples": [
+      {
+        "en": "I used to live in Hue.",
+        "vi": "Trước đây tôi từng sống ở Huế (bây giờ không còn nữa)."
+      },
+      {
+        "en": "I am used to waking up early now.",
+        "vi": "Bây giờ tôi đã quen với việc dậy sớm."
+      },
+      {
+        "en": "It took time to get used to the new job.",
+        "vi": "Phải mất thời gian để quen dần với công việc mới."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay nhầm ba cấu trúc này với nhau vì đều dịch có chữ 'quen'/'từng' trong tiếng Việt, dẫn đến việc chia sai động từ theo sau (nguyên thể hay V-ing).",
+    "notes_vi": "",
+    "id": 37
+  },
+  {
+    "topic_en": "Direct & Indirect Objects",
+    "topic_vi": "Tân ngữ trực tiếp và gián tiếp",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "trung cấp",
+    "explanation_vi": "Một số động từ (give, send, buy, show...) có thể đi kèm hai tân ngữ: tân ngữ gián tiếp (người nhận) và tân ngữ trực tiếp (vật được cho/gửi), có thể sắp xếp theo hai cách.",
+    "structure": "S + V + tân ngữ gián tiếp + tân ngữ trực tiếp  =  S + V + tân ngữ trực tiếp + to/for + tân ngữ gián tiếp",
+    "examples": [
+      {
+        "en": "I gave her a book. = I gave a book to her.",
+        "vi": "Tôi đã đưa cho cô ấy một quyển sách."
+      }
+    ],
+    "common_mistakes_vi": "Học viên hay quên giới từ 'to/for' khi đảo trật tự hai tân ngữ, ví dụ sai 'I gave a book her' → đúng 'I gave a book to her'.",
+    "notes_vi": "",
+    "id": 38
+  },
+  {
+    "topic_en": "Prepositions of Time: in/on/at",
+    "topic_vi": "Giới từ chỉ thời gian: in/on/at",
+    "category": "Giới từ (Prepositions)",
+    "level": "cơ bản",
+    "explanation_vi": "Ba giới từ này dùng cho các đơn vị thời gian khác nhau: 'at' cho giờ giấc cụ thể, 'on' cho ngày/thứ, 'in' cho tháng/năm/mùa/khoảng thời gian dài.",
+    "structure": "at + giờ (at 7 AM) | on + ngày/thứ (on Monday) | in + tháng/năm/mùa (in June, in 2024, in summer)",
+    "examples": [
+      {
+        "en": "I wake up at 6 AM.",
+        "vi": "Tôi thức dậy lúc 6 giờ sáng."
+      },
+      {
+        "en": "The meeting is on Monday.",
+        "vi": "Cuộc họp diễn ra vào thứ hai."
+      },
+      {
+        "en": "She was born in 1995.",
+        "vi": "Cô ấy sinh năm 1995."
+      }
+    ],
+    "common_mistakes_vi": "Vì tiếng Việt chỉ dùng một từ 'vào' cho mọi loại thời gian, học viên rất hay dùng lẫn lộn cả ba giới từ này với nhau.",
+    "notes_vi": "",
+    "id": 39
+  },
+  {
+    "topic_en": "Prepositions of Place: in/on/at",
+    "topic_vi": "Giới từ chỉ nơi chốn: in/on/at",
+    "category": "Giới từ (Prepositions)",
+    "level": "cơ bản",
+    "explanation_vi": "'At' dùng cho một điểm cụ thể, 'on' dùng cho bề mặt, 'in' dùng cho không gian có giới hạn/bên trong.",
+    "structure": "at + điểm cụ thể (at the door) | on + bề mặt (on the table) | in + không gian kín (in the room)",
+    "examples": [
+      {
+        "en": "The keys are on the table.",
+        "vi": "Chìa khóa ở trên bàn."
+      },
+      {
+        "en": "She is in the kitchen.",
+        "vi": "Cô ấy đang ở trong bếp."
+      },
+      {
+        "en": "Wait for me at the bus stop.",
+        "vi": "Chờ tôi ở trạm xe buýt."
+      }
+    ],
+    "common_mistakes_vi": "Tương tự giới từ thời gian, học viên Việt hay dùng chung một từ 'ở' cho mọi trường hợp nên dễ nhầm lẫn cả ba giới từ này.",
+    "notes_vi": "",
+    "id": 40
+  },
+  {
+    "topic_en": "Word Order",
+    "topic_vi": "Trật tự từ trong câu",
+    "category": "Cấu trúc câu (Structures)",
+    "level": "cơ bản",
+    "explanation_vi": "Tiếng Anh có trật tự từ khá cố định: Chủ ngữ - Động từ - Tân ngữ (SVO), và trạng từ chỉ tần suất thường đứng trước động từ thường nhưng sau động từ 'to be'.",
+    "structure": "S + V + O + (Trạng từ nơi chốn) + (Trạng từ thời gian)",
+    "examples": [
+      {
+        "en": "I usually drink coffee in the morning.",
+        "vi": "Tôi thường uống cà phê vào buổi sáng."
+      },
+      {
+        "en": "She is always on time.",
+        "vi": "Cô ấy luôn luôn đúng giờ."
+      }
+    ],
+    "common_mistakes_vi": "Vì tiếng Việt khá linh hoạt về vị trí trạng từ, học viên hay đặt sai vị trí trạng từ tần suất, ví dụ sai 'I drink usually coffee' → đúng 'I usually drink coffee'.",
+    "notes_vi": "",
+    "id": 41
+  },
+  {
+    "topic_en": "Adjective Order",
+    "topic_vi": "Trật tự tính từ",
+    "category": "Tính từ (Adjectives)",
+    "level": "nâng cao",
+    "explanation_vi": "Khi có nhiều tính từ cùng bổ nghĩa cho một danh từ, tiếng Anh có trật tự cố định: ý kiến - kích thước - tuổi - hình dạng - màu sắc - nguồn gốc - chất liệu - mục đích + danh từ.",
+    "structure": "Opinion + Size + Age + Shape + Color + Origin + Material + Purpose + Noun",
+    "examples": [
+      {
+        "en": "a beautiful small old round black Vietnamese wooden coffee table",
+        "vi": "một cái bàn cà phê gỗ Việt Nam màu đen cũ tròn nhỏ đẹp"
+      }
+    ],
+    "common_mistakes_vi": "Vì tiếng Việt đặt tính từ sau danh từ và không có trật tự cố định nghiêm ngặt như tiếng Anh, học viên hay sắp xếp tính từ một cách tùy ý khi nói tiếng Anh.",
+    "notes_vi": "",
+    "id": 42
+  }
+]
