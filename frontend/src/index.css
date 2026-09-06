@@ -900,5 +900,7 @@ body { background-color: #e6f1ff; }
 .context-explanation details { margin-top: .8rem; color: #66758d; }
 .context-explanation summary { cursor: pointer; }
 
-.interface-language { padding: .6rem .8rem; border: 1px solid #b8cbed; border-radius: 5px; background: #f3f7ff; color: #345988; font: inherit; font-size: .82rem; cursor: pointer; }
+.interface-language-control { position: relative; display: inline-flex; align-items: center; }
+.interface-language-control > svg { position: absolute; left: .7rem; color: #345988; pointer-events: none; }
+.interface-language { padding: .6rem .8rem .6rem 2.25rem; border: 1px solid #b8cbed; border-radius: 5px; background: #f3f7ff; color: #345988; font: inherit; font-size: .82rem; cursor: pointer; }
 @media(max-width:650px) { .nav-tabs { flex-wrap: wrap; } }
