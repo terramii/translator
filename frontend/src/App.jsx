@@ -3,8 +3,11 @@ import Navbar from './components/Navbar';
 import TranslatorPanel from './components/TranslatorPanel';
 import WordInfoTab from './components/WordInfoTab';
 import MascotTip from './components/MascotTip';
+import { LanguageProvider, useLanguage } from './language';
 import { detectLanguage, translateSentence, tokenizeText } from './services/translator';
-export default function App() {
+export default function App() { return <LanguageProvider><AppContent /></LanguageProvider>; }
+function AppContent() {
+  const { t } = useLanguage();
   const [inputText, setInputText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
   const [isTranslating, setIsTranslating] = useState(false);
@@ -24,7 +27,7 @@ export default function App() {
     if (!inputText.trim()) return () => controller.abort();
     const timer = setTimeout(async () => {
       try { const result = await translateSentence(inputText, sourceLang, targetLang, controller.signal); if (!controller.signal.aborted) setTranslatedText(result); }
-      catch { if (!controller.signal.aborted) setTranslationError('Không thể kết nối dịch vụ dịch. Vui lòng thử lại.'); }
+      catch { if (!controller.signal.aborted) setTranslationError(true); }
       finally { if (!controller.signal.aborted) setIsTranslating(false); }
     }, 400);
     return () => { clearTimeout(timer); controller.abort(); };

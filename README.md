@@ -1,22 +1,22 @@
-﻿# Dịch bèo 🦄
+# Dịch bèo 🦄
 
 A Vietnamese–English learning website with a playful, flat notebook interface. Translate sentences in either language, then hover over words to understand what they mean **in that sentence**.
 
 ## Features
 
 - Automatic Vietnamese/English detection and two-way sentence translation.
-- Gemini-powered contextual explanations, including idioms, collocations, and phrases such as **so much**.
+- Groq-powered contextual explanations, analyzing the whole sentence once and reusing analysis for every hover (including idioms, collocations, and phrases such as **so much**).
 - Hover or keyboard-focus a word to preview its meaning; click to pin its info panel. Press Escape to dismiss it.
 - Blue hover highlights and purple pinned-word highlights, with the interpreted phrase highlighted in its sentence.
-- Vietnamese explanations, usage notes, bilingual examples, pronunciation playback, and copy controls.
+- Vietnamese/English interface selector, bilingual usage notes and examples, pronunciation playback, and copy controls.
 - Local vocabulary and grammar datasets for reference and limited offline fallback.
 - Responsive blue notebook styling with clouds, unicorn accents, pink headers, and yellow direction controls.
 
 ## Requirements
 
 - Node.js **22.9+** (Node.js 24 recommended) and npm.
-- A Gemini API key for contextual word analysis.
-- Internet access for Gemini and online sentence translation.
+- A Groq API key for contextual word analysis.
+- Internet access for Groq and online sentence translation.
 
 ## Local setup
 
@@ -41,11 +41,11 @@ cp .env.example .env
 Set these values in `.env`:
 
 ```dotenv
-GEMINI_API_KEY=your_key_here
-GEMINI_MODEL=gemini-2.5-flash
+GROQ_API_KEY=your_key_here
+GROQ_MODEL=openai/gpt-oss-120b
 ```
 
-Get a key from [Google AI Studio](https://aistudio.google.com/apikey). Keep it in the root `.env`, never in frontend code or a `VITE_` variable. `.env` is excluded from Git. Restart the server after changing it. API availability and usage limits depend on your provider account.
+Get a key from [Groq Console](https://console.groq.com/keys). Keep it in the root `.env`, never in frontend code or a `VITE_` variable. `.env` is excluded from Git. Restart the server after changing it. API availability and usage limits depend on your provider account.
 
 Start development:
 
@@ -66,13 +66,13 @@ The Node server serves `dist/` and the API at port 3000. Set `PORT` to change th
 
 ## How contextual lookup works
 
-The frontend sends the full sentence, selected word, language, and exact UTF-16 selection offsets to `POST /api/word/context`. Gemini identifies the relevant phrase and returns its contextual meaning, grammatical role, usage, and examples as structured JSON. The backend validates the response and verifies that the phrase contains the selected occurrence.
+When a word in a sentence is hovered, the frontend requests contextual analysis from `POST /api/sentence/context`. Groq analyzes the **entire sentence once** and returns structured contextual breakdowns for all phrases/words in the sentence. The backend and frontend cache the complete analysis for one hour, keyed by the exact text and language. Concurrent hovers share the in-flight request; leaving a word only cancels its UI subscription. Repeated occurrences retain distinct meanings through their token IDs and offsets. The source and translated text are separate inputs, so exploring both panels may require two analyses. Cache expiry, reloads or serverless cold starts may require analysis again.
 
-For example, **so** in “Thank you so much” is an intensifier, while **so** in “It was raining, so I stayed home” expresses a result. Caches include sentence and selection position so these senses are not mixed up.
+For example, **so** in “Thank you so much” is an intensifier, while **so** in “It was raining, so I stayed home” expresses a result. Whole-sentence analysis preserves contextual relationships while drastically reducing request counts.
 
-If Gemini is unavailable or no key is configured, the UI explicitly says contextual analysis is unavailable. Any local dictionary entry is shown separately as a **general reference**, not as a confirmed contextual meaning. Model explanations can still be imperfect.
+Configured providers are tried in order: **Groq → Gemini → OpenAI**. Blank keys are skipped. Quota, timeout, network and service failures advance to the next provider; rejected credentials, invalid requests/responses and refusals are reported rather than silently spending on another provider. Rate-limited providers cool down, and failed sentence results are cached briefly to avoid request storms. If all available providers fail, the panel shows the error code. Model explanations can still be imperfect.
 
-Implementation reference: [Gemini generateContent API](https://ai.google.dev/api/generate-content).
+Implementation reference: [Groq API Documentation](https://console.groq.com/docs/quickstart).
 
 ## Sentence translation and local fallback
 
@@ -97,7 +97,7 @@ frontend/
 backend/
   server.js            Production HTTP server
   api.js               Translation and lookup endpoints
-  semanticAgent.js     Gemini contextual analysis
+  semanticAgent.js     Groq contextual analysis & whole-sentence caching
   localData.js         Dataset indexes and fallback
   config.js            Server-side environment loading
   *.test.js            Automated tests
@@ -111,7 +111,7 @@ vite.config.js         Development server and API middleware
 | Endpoint | Purpose |
 | --- | --- |
 | `POST /api/translate` | Translate `{ text, sourceLang, targetLang }`; input limit: 500 characters. |
-| `POST /api/word/context` | Analyze `{ word, lang, sentence, start, end }` in context. |
+| `POST /api/sentence/context` | Analyze `{ word, lang, sentence, start, end }` in context. |
 | `GET /api/word?word=...&lang=en` | General dictionary lookup, without contextual interpretation. |
 
 ## Verification
@@ -121,11 +121,11 @@ npm test
 npm run build
 ```
 
-Tests cover language detection, text offsets, repeated-word selections, dataset fallback, provider errors, API validation, and contextual request/cache handling. Gemini responses in automated tests are mocked; they verify integration behavior, not model accuracy. Live checks require a configured key.
+Tests cover language detection, text offsets, repeated-word selections, dataset fallback, provider errors, API validation, and contextual request/cache handling. Groq responses in automated tests are mocked; they verify integration behavior, not model accuracy. Live checks require a configured key.
 
 ## Before public deployment
 
-The current server is intended for local use. Add authentication and request rate limits before exposing the Gemini-backed endpoints publicly. Submitted sentences are sent to the configured translation/model providers. Secrets and generated files (`.env`, `node_modules/`, `dist/`) are excluded from version control.
+The current server is intended for local use. Add authentication and request rate limits before exposing the Groq-backed endpoints publicly. Submitted sentences are sent to the configured translation/model providers. Secrets and generated files (`.env`, `node_modules/`, `dist/`) are excluded from version control.
 
 ## Deploy on Vercel
 
@@ -137,6 +137,23 @@ Import the GitHub repository and use these project settings:
 - **Output Directory:** `dist`.
 - **Node.js:** 22.x (also specified in `package.json`).
 
-In **Settings → Environment Variables**, add `GEMINI_API_KEY` for Production (and Preview if needed). Optionally set `GEMINI_MODEL=gemini-2.5-flash`. Save and redeploy. Your local `.env` is intentionally not uploaded to GitHub or Vercel.
+In **Settings → Environment Variables**, add `GROQ_API_KEY` for Production (and Preview if needed). Optionally set `GROQ_MODEL=llama-3.3-70b-versatile`. Save and redeploy. Your local `.env` is intentionally not uploaded to GitHub or Vercel.
 
 `vercel.json` routes API requests to `api/handler.js`, which runs the shared backend as a Node function. Both dataset files are included in the function bundle. Local development and `npm start` continue using the existing server setup.
+
+### Provider fallback configuration
+
+Add these server-side variables locally in `.env` and in Vercel **Production** environment variables, then redeploy:
+
+```dotenv
+GROQ_API_KEY=your_groq_key
+GROQ_MODEL=openai/gpt-oss-120b
+GEMINI_API_KEY=your_optional_gemini_key
+GEMINI_MODEL=gemini-2.5-flash
+OPENAI_API_KEY=your_optional_openai_key
+OPENAI_MODEL=gpt-4.1-mini
+```
+
+The `openai/` prefix in the Groq model name is a model identifier; it still runs on Groq with `GROQ_API_KEY`. Only the final fallback calls OpenAI using `OPENAI_API_KEY`. Charges follow the provider account that serves the request. Leave optional keys blank to disable those fallbacks. Use a Groq model supporting strict structured outputs; `groq/compound` does not support this request format.
+
+The interface selector in the header switches Vietnamese/English without spending another analysis request. It does not change automatic detection of the input sentence’s language.

@@ -10,6 +10,7 @@
     }
   },
   "rewrites": [
+    { "source": "/api/sentence/context", "destination": "/api/handler?route=sentence/context" },
     { "source": "/api/translate", "destination": "/api/handler?route=translate" },
     { "source": "/api/word/context", "destination": "/api/handler?route=word/context" },
     { "source": "/api/word", "destination": "/api/handler?route=word" }

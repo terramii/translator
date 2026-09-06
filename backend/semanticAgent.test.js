@@ -1,69 +1,82 @@
-import test from 'node:test';
+﻿import test from 'node:test';
 import assert from 'node:assert/strict';
-import { analyzeContext, validContext } from './semanticAgent.js';
 import { tokenizeText } from '../frontend/src/services/translator.js';
-
-test('tokens carry exact source offsets, including Vietnamese compounds and repeated words', () => {
-  for (const sentence of ['So I thanked you so much.', '🦄 Hôm nay mình đi dạo nhé!']) {
-    const tokens = tokenizeText(sentence, sentence.includes('Hôm') ? 'vi' : 'en');
-    for (const token of tokens) assert.equal(sentence.slice(token.start, token.end), token.text);
-    const selections = tokens.filter(token => token.cleanText === 'so');
-    if (selections.length === 2) assert.notEqual(selections[0].start, selections[1].start);
-  }
-});
-test('rejects mismatched selection or excessive context', () => {
-  assert.equal(validContext({ word: 'so', sentence: 'Thank you so much.', lang: 'en', start: 0, end: 2 }), false);
-  assert.equal(validContext({ word: 'a', sentence: 'a'.repeat(2001), lang: 'en', start: 0, end: 1 }), false);
-});
-test('context request, phrase validation, deduplication and occurrence-specific cache', async t => {
-  const originalFetch = globalThis.fetch, originalKey = process.env.GEMINI_API_KEY;
-  t.after(() => { globalThis.fetch = originalFetch; if (originalKey === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = originalKey; });
-  process.env.GEMINI_API_KEY = 'test-only';
+const setup = async t => {
+  const oldFetch = globalThis.fetch;
+  const keys = ['GROQ_API_KEY', 'GEMINI_API_KEY', 'OPENAI_API_KEY'];
+  const previous = keys.map(k => process.env[k]);
+  keys.forEach(k => { process.env[k] = 'test-key'; });
+  t.after(() => { globalThis.fetch = oldFetch; keys.forEach((k, i) => previous[i] === undefined ? delete process.env[k] : process.env[k] = previous[i]); });
+  return import(`./semanticAgent.js?test=${Math.random()}`);
+};
+function analysis(payload) {
+  return { entries: payload.tokens.map(t => ({ id: t.id, phrase: t.text.toLowerCase() === 'so' && t.start > 0 ? 'so much' : t.text, meaningVi: t.text.toLowerCase() === 'so' ? t.start === 0 ? 'vì thế' : 'rất nhiều' : 'nghĩa', meaningEn: 'meaning', posVi: 'Từ', posEn: 'Word', usageVi: 'Cách dùng', usageEn: 'Usage', exampleVi: 'Cảm ơn rất nhiều.', exampleEn: 'Thank you so much.' })) };
+}
+const groqResponse = value => Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify(value) } }] });
+test('all words and repeated occurrences share exactly one provider request', async t => {
+  const { analyzeSentence, analyzeContext } = await setup(t);
   let calls = 0;
+  globalThis.fetch = async (url, options) => { calls++; const body = JSON.parse(options.body); return groqResponse(analysis(JSON.parse(body.messages[1].content))); };
+  const input = { sentence: 'So thank you so much.', lang: 'en' };
+  const tokens = tokenizeText(input.sentence, input.lang).filter(t => !t.isPunctuation);
+  const results = await Promise.all(tokens.map(t => analyzeContext({ ...input, word: t.text, start: t.start, end: t.end })));
+  assert.equal(calls, 1);
+  assert.equal(results[0].meaning, 'vì thế');
+  assert.equal(results[3].meaning, 'rất nhiều');
+  await analyzeSentence(input); assert.equal(calls, 1);
+  await analyzeSentence({ ...input, sentence: 'Different sentence.' }); assert.equal(calls, 2);
+});
+test('Groq quota falls through Gemini unavailable to OpenAI; subsequent sentences skip cooled providers', async t => {
+  const { analyzeSentence } = await setup(t);
+  const calls = [];
   globalThis.fetch = async (url, options) => {
-    calls++;
-    assert.ok(url.includes(':generateContent'));
-    const request = JSON.parse(options.body);
-    const selection = JSON.parse(request.contents[0].parts[0].text);
-    assert.equal(selection.sentence, 'So I thanked you so much.');
-    const result = { phrase: selection.start === 0 ? 'So' : 'so much', meaningVi: selection.start === 0 ? 'Vì thế' : 'rất nhiều', meaningEn: 'very much', pos: 'Trạng từ', usageVi: 'Nhấn mạnh mức độ.', examples: [{ en: 'Thank you so much.', vi: 'Cảm ơn bạn rất nhiều.' }] };
+    calls.push(url);
+    if (url.includes('groq')) return Response.json({}, { status: 429, headers: { 'retry-after': '60' } });
+    if (url.includes('googleapis')) return Response.json({}, { status: 503 });
+    const result = analysis(JSON.parse(JSON.parse(options.body).input));
+    return Response.json({ status: 'completed', output: [{ content: [{ type: 'output_text', text: JSON.stringify(result) }] }] });
+  };
+  assert.equal((await analyzeSentence({ sentence: 'Hello there.', lang: 'en' })).provider, 'OpenAI');
+  assert.equal(calls.length, 3);
+  assert.equal((await analyzeSentence({ sentence: 'Hello again.', lang: 'en' })).provider, 'OpenAI');
+  assert.equal(calls.length, 4);
+});
+test('missing providers are skipped and Gemini adapter parses a complete batch', async t => {
+  const { analyzeSentence } = await setup(t);
+  delete process.env.GROQ_API_KEY; delete process.env.OPENAI_API_KEY;
+  globalThis.fetch = async (url, options) => {
+    assert.ok(url.includes('googleapis'));
+    const result = analysis(JSON.parse(JSON.parse(options.body).contents[0].parts[0].text));
     return Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify(result) }] } }] });
   };
-  const sentence = 'So I thanked you so much.';
-  const input = { word: 'so', sentence, lang: 'en', start: 17, end: 19 };
-  const [one, two] = await Promise.all([analyzeContext(input), analyzeContext(input)]);
-  assert.equal(one.meaning, 'rất nhiều'); assert.equal(two.phrase, 'so much'); assert.equal(calls, 1);
-  assert.equal((await analyzeContext({ ...input, word: 'So', start: 0, end: 2 })).meaning, 'Vì thế');
-  assert.equal(calls, 2);
+  assert.equal((await analyzeSentence({ sentence: 'Xin chào.', lang: 'vi' })).provider, 'Gemini');
 });
-test('missing key and malformed model results are explicit fallback, not contextual meanings', async t => {
-  const originalFetch = globalThis.fetch, originalKey = process.env.GEMINI_API_KEY;
-  t.after(() => { globalThis.fetch = originalFetch; if (originalKey === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = originalKey; });
-  delete process.env.GEMINI_API_KEY;
-  const input = { word: 'so', sentence: 'I miss you so much.', lang: 'en', start: 11, end: 13 };
-  assert.equal((await analyzeContext(input)).source, 'general-fallback');
-  process.env.GEMINI_API_KEY = 'test-only';
-  let calls = 0;
-  globalThis.fetch = async () => { calls++; return Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: '{}' }] } }] }); };
-  assert.equal((await analyzeContext(input)).source, 'general-fallback');
-  assert.equal(calls, 1, 'missing-key fallback must not be cached');
-  globalThis.fetch = async () => Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify({ phrase: 'unrelated phrase', meaningVi: 'x', meaningEn: 'x', pos: 'x', usageVi: 'x', examples: [] }) }] } }] });
-  assert.equal((await analyzeContext(input)).source, 'general-fallback');
+test('partial batches are rejected without spending on fallback providers', async t => {
+  const { analyzeSentence } = await setup(t); let calls = 0;
+  globalThis.fetch = async () => { calls++; return groqResponse({ entries: [] }); };
+  const result = await analyzeSentence({ sentence: 'Hello world.', lang: 'en' });
+  assert.equal(result.errorCode, 'INVALID_RESPONSE'); assert.equal(calls, 1);
+  await analyzeSentence({ sentence: 'Hello world.', lang: 'en' }); assert.equal(calls, 1);
 });
-
-test('provider failures return safe diagnostic codes without leaking credentials', async t => {
-  const originalFetch = globalThis.fetch, originalKey = process.env.GEMINI_API_KEY;
-  t.after(() => { globalThis.fetch = originalFetch; if (originalKey === undefined) delete process.env.GEMINI_API_KEY; else process.env.GEMINI_API_KEY = originalKey; });
-  process.env.GEMINI_API_KEY = 'secret-test-value';
-  const input = { word: 'birthday', sentence: 'Happy birthday!', lang: 'en', start: 6, end: 14 };
-  for (const [status, expected] of [[400, 'INVALID_REQUEST'], [403, 'PERMISSION_DENIED'], [404, 'MODEL_NOT_FOUND'], [429, 'QUOTA_EXCEEDED'], [503, 'PROVIDER_UNAVAILABLE']]) {
-    globalThis.fetch = async () => Response.json({ error: { message: 'secret-test-value' } }, { status });
-    const result = await analyzeContext(input);
-    assert.equal(result.errorCode, expected);
-    assert.ok(!JSON.stringify(result).includes('secret-test-value'));
-  }
-  globalThis.fetch = async () => Response.json({ error: { details: [{ reason: 'API_KEY_INVALID' }] } }, { status: 400 });
-  assert.equal((await analyzeContext(input)).errorCode, 'API_KEY_INVALID');
-  globalThis.fetch = async () => { throw new DOMException('Expired', 'TimeoutError'); };
-  assert.equal((await analyzeContext(input)).errorCode, 'TIMEOUT');
+test('offset validation and no-key errors', async t => {
+  const { validContext, analyzeSentence } = await setup(t);
+  for (const sentence of ['🦄 Hôm nay đi dạo.', 'So, so much.']) for (const token of tokenizeText(sentence, 'vi')) assert.equal(sentence.slice(token.start, token.end), token.text);
+  assert.equal(validContext({ sentence: 'Hello', word: 'no', start: 0, end: 2, lang: 'en' }), false);
+  delete process.env.GROQ_API_KEY; delete process.env.GEMINI_API_KEY; delete process.env.OPENAI_API_KEY;
+  assert.equal((await analyzeSentence({ sentence: 'Hello', lang: 'en' })).errorCode, 'MISSING_KEY');
+});
+test('browser shares in-flight sentence request across hovers and caller cancellation', async t => {
+  const old = globalThis.fetch; t.after(() => globalThis.fetch = old);
+  const client = await import(`../frontend/src/services/wordLookup.js?test=${Math.random()}`);
+  const tokens = tokenizeText('Hello world.', 'en').filter(t => !t.isPunctuation);
+  let finish, calls = 0;
+  globalThis.fetch = async () => { calls++; await new Promise(resolve => finish = resolve); return Response.json({ source: 'semantic', entries: tokens.map(token => ({ ...token, word: token.text, source: 'semantic' })) }); };
+  const controller = new AbortController();
+  const first = client.lookupWordAsync(tokens[0], controller.signal);
+  const second = client.lookupWordAsync(tokens[1]);
+  controller.abort(); finish();
+  await assert.rejects(first, { name: 'AbortError' });
+  assert.equal((await second).word, 'world');
+  assert.equal((await client.lookupWordAsync(tokens[0])).word, 'Hello');
+  assert.equal(calls, 1);
 });

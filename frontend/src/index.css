@@ -899,3 +899,6 @@ body { background-color: #e6f1ff; }
 .context-sentence mark { background: #e3d3fb; color: #562a8b; padding: .15rem .25rem; border-radius: 3px; }
 .context-explanation details { margin-top: .8rem; color: #66758d; }
 .context-explanation summary { cursor: pointer; }
+
+.interface-language { padding: .6rem .8rem; border: 1px solid #b8cbed; border-radius: 5px; background: #f3f7ff; color: #345988; font: inherit; font-size: .82rem; cursor: pointer; }
+@media(max-width:650px) { .nav-tabs { flex-wrap: wrap; } }

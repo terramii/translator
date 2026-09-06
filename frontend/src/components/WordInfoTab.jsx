@@ -1,42 +1,27 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Pin, X, Volume2 } from 'lucide-react';
 import { lookupWord, lookupWordAsync } from '../services/wordLookup';
+import { useLanguage, errorMessage } from '../language';
 export default function WordInfoTab({ token, isPinned, onClose, onTogglePin, showToast }) {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState('');
-  const [retry, setRetry] = useState(0);
+  const { locale, t } = useLanguage();
+  const [data, setData] = useState(null), [error, setError] = useState(''), [retry, setRetry] = useState(0);
   useEffect(() => {
-    const controller = new AbortController();
-    const initial = lookupWord(token);
+    const controller = new AbortController(); const initial = lookupWord(token);
     setData(initial); setError('');
     if (!initial) {
-      const timer = setTimeout(() => lookupWordAsync(token, controller.signal)
-        .then(result => { if (!controller.signal.aborted) setData(result); })
-        .catch(error => { if (!controller.signal.aborted) setError(error.message); }), 150);
+      const timer = setTimeout(() => lookupWordAsync(token, controller.signal).then(result => { if (!controller.signal.aborted) setData(result); }).catch(() => { if (!controller.signal.aborted) setError('NETWORK_ERROR'); }), 250);
       return () => { clearTimeout(timer); controller.abort(); };
     }
     return () => controller.abort();
   }, [token.sentence, token.start, token.end, token.lang, retry]);
-  const isEnglish = token.lang === 'en';
-  function speak() {
-    if (!window.speechSynthesis) return showToast('Trình duyệt chưa hỗ trợ phát âm.');
-    window.speechSynthesis.cancel();
-    const speech = new SpeechSynthesisUtterance(token.text); speech.lang = isEnglish ? 'en-US' : 'vi-VN';
-    window.speechSynthesis.speak(speech);
-  }
-  return <section className="word-info-wrapper" aria-label="Thông tin từ" aria-live="polite"><div className="word-info-card">
-    <div className="word-info-header"><div className="word-title-group"><h3 className="target-word">{token.text}</h3>{data?.ipa && <span className="ipa-phonetic">{data.ipa}</span>}<button className="action-btn" title="Nghe phát âm" onClick={speak}><Volume2 size={18} /></button>{data?.pos && <span className="pos-tag">{data.pos}</span>}</div>
-      <div className="card-actions"><button className="action-btn" title={isPinned ? 'Bỏ ghim' : 'Ghim thẻ nghĩa'} aria-pressed={isPinned} onClick={onTogglePin}><Pin size={18} fill={isPinned ? 'currentColor' : 'none'} /></button><button className="action-btn" title="Đóng thẻ nghĩa" onClick={onClose}><X size={18} /></button></div>
-    </div>
-    {isPinned && <p className="pinned-badge">Đã ghim · Bấm từ khác để đổi · Esc để đóng</p>}
-    {data?.source === 'semantic' && <div className="context-explanation"><div className="section-label">Nghĩa theo ngữ cảnh · Gemini</div><p>Cụm đang xét: <strong>{data.phrase}</strong></p><p className="context-sentence">{token.sentence.slice(0, data.phraseStart)}<mark>{token.sentence.slice(data.phraseStart, data.phraseEnd)}</mark>{token.sentence.slice(data.phraseEnd)}</p></div>}
-    {data?.source === 'general-fallback' && <div className="context-explanation" role="status"><p>{data.notice}</p><button className="preset-chip" onClick={() => setRetry(n => n + 1)}>Thử phân tích lại</button>{data.generalReference && <details><summary>Nghĩa từ điển tham khảo — chưa xét ngữ cảnh</summary><p>{isEnglish ? data.generalReference.meaning : data.generalReference.meaningEn}</p><p>{isEnglish ? data.generalReference.usage : data.generalReference.translationGuide}</p></details>}</div>}
-    {error ? <p role="alert">{error} <button onClick={() => setRetry(n => n + 1)}>Thử lại</button></p> : !data ? <p>Đang tra từ…</p> : <>
-      <div className="info-grid"><div className="info-section"><div className="section-label">{isEnglish ? 'Nghĩa tiếng Việt' : 'Dịch sang tiếng Anh'}</div><div className="meaning-main">{isEnglish ? data.meaning : data.meaningEn}</div></div><div className="info-section"><div className="section-label">{isEnglish ? 'Cách dùng & cấu trúc' : 'Cách dịch & diễn đạt'}</div><div className="usage-text">{isEnglish ? data.usage : data.translationGuide}</div></div></div>
-      {!!data.examples?.length && <div className="example-list">{data.examples.map((example, index) => <div className="example-item" key={index}><div className="example-en">{example.en}</div><div className="example-vi">{example.vi}</div></div>)}</div>}
-      {data.grammar && <div className="info-section"><div className="section-label">Ghi chú ngữ pháp · {data.grammar.title}</div><p className="usage-text">{data.grammar.explanation}</p><p className="example-en">{data.grammar.structure}</p></div>}
+  function speak() { if (!window.speechSynthesis) return showToast(t('Trình duyệt chưa hỗ trợ phát âm.', 'Speech playback is not supported.')); window.speechSynthesis.cancel(); const speech = new SpeechSynthesisUtterance(token.text); speech.lang = token.lang === 'en' ? 'en-US' : 'vi-VN'; window.speechSynthesis.speak(speech); }
+  return <section className="word-info-wrapper" aria-label={t('Thông tin từ', 'Word details')} aria-live="polite"><div className="word-info-card">
+    <div className="word-info-header"><div className="word-title-group"><h3 className="target-word">{token.text}</h3><button className="action-btn" title={t('Nghe phát âm', 'Listen')} onClick={speak}><Volume2 size={18} /></button>{data?.pos && <span className="pos-tag">{locale === 'en' ? data.posEn : data.pos}</span>}</div><div className="card-actions"><button className="action-btn" title={isPinned ? t('Bỏ ghim', 'Unpin') : t('Ghim thẻ nghĩa', 'Pin details')} aria-pressed={isPinned} onClick={onTogglePin}><Pin size={18} fill={isPinned ? 'currentColor' : 'none'} /></button><button className="action-btn" title={t('Đóng thẻ nghĩa', 'Close details')} onClick={onClose}><X size={18} /></button></div></div>
+    {isPinned && <p className="pinned-badge">{t('Đã ghim · Bấm từ khác để đổi · Esc để đóng', 'Pinned · Click another word to change · Esc to close')}</p>}
+    {error ? <p role="alert">{errorMessage(error, locale)} <button onClick={() => setRetry(n => n + 1)}>{t('Thử lại', 'Retry')}</button></p> : !data ? <p>{t('Đang phân tích cả câu… Các từ khác sẽ dùng chung kết quả.', 'Analyzing the whole sentence… Other words will reuse this result.')}</p> : data.source !== 'semantic' ? <div className="context-explanation"><p>{errorMessage(data.errorCode, locale)} ({data.errorCode})</p><button className="preset-chip" onClick={() => setRetry(n => n + 1)}>{t('Thử lại sau 30 giây', 'Retry after 30 seconds')}</button></div> : <>
+      <div className="context-explanation"><div className="section-label">{t('Phân tích cả câu', 'Sentence analysis')} · {data.provider}</div><p>{t('Cụm đang xét:', 'Phrase:')} <strong>{data.phrase}</strong></p><p className="context-sentence">{token.sentence.slice(0, data.phraseStart)}<mark>{token.sentence.slice(data.phraseStart, data.phraseEnd)}</mark>{token.sentence.slice(data.phraseEnd)}</p></div>
+      <div className="info-grid"><div className="info-section"><div className="section-label">{token.lang === 'en' ? t('Nghĩa tiếng Việt', 'Vietnamese meaning') : t('Dịch sang tiếng Anh', 'English translation')}</div><div className="meaning-main">{token.lang === 'en' ? data.meaning : data.meaningEn}</div>{locale === 'en' && token.lang === 'en' && <p>{data.meaningEn}</p>}</div><div className="info-section"><div className="section-label">{t('Cách dùng trong câu', 'Usage in this sentence')}</div><div className="usage-text">{locale === 'en' ? data.usageEn : data.usage}</div></div></div>
+      <div className="example-list">{data.examples?.map((ex, i) => <div className="example-item" key={i}><div className="example-en">{ex.en}</div><div className="example-vi">{ex.vi}</div></div>)}</div>
     </>}
   </div></section>;
 }
-
-

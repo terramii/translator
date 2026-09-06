@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const url = new URL(req.url, 'http://localhost');
   const route = url.searchParams.get('route');
   if (route) {
-    if (!['translate', 'word', 'word/context'].includes(route)) {
+    if (!['translate', 'word', 'word/context', 'sentence/context'].includes(route)) {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'Không tìm thấy.' }));
     }
