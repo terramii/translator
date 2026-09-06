@@ -840,11 +840,11 @@ body { background: #eaf2ff; }
 .word-info-card:has(.pinned-badge) { border-left-color: #8253bd; }
 
 /* Pink language headers against the blue notebook. */
-.translator-card > .card-header { background: #fce2ef; border-bottom-color: #e9b9d1; }
-.translator-card > .card-header .lang-selector { color: #813d62; }
-.translator-card > .card-header .brand-badge { background: #f5cfe3; color: #89486b; }
-.translator-card > .card-header .action-btn { border-color: #dfa9c5; color: #89486b; }
-.translator-card > .card-header .action-btn:hover { background: #f4c8df; }
+.translator-card > .card-header { background: #f5a6df; border-bottom-color: #d980c1; }
+.translator-card > .card-header .lang-selector { color: #642550; }
+.translator-card > .card-header .brand-badge { background: #f9c6ec; color: #642550; }
+.translator-card > .card-header .action-btn { border-color: #bd63a4; color: #642550; }
+.translator-card > .card-header .action-btn:hover { background: #f9c6ec; }
 
 /* Yellow language-direction control. */
 section[aria-label="Dịch hai chiều"] > .action-btn {
