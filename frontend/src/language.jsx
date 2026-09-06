@@ -7,19 +7,13 @@ export function LanguageProvider({ children }) {
 }
 export const useLanguage = () => useContext(Context);
 export function errorMessage(code, locale) {
+  const unavailable = ['Tạm thời chưa thể tra nghĩa. Vui lòng thử lại sau.', 'Word meanings are temporarily unavailable. Please try again later.'];
   const messages = {
-    MISSING_KEY: ['Chưa cấu hình khóa API trên máy chủ.', 'No API key is configured on the server.'],
-    API_KEY_INVALID: ['Khóa API không hợp lệ.', 'The API key was rejected.'],
-    PERMISSION_DENIED: ['Nhà cung cấp từ chối quyền truy cập.', 'The provider denied access.'],
-    MODEL_NOT_FOUND: ['Mô hình đã chọn không khả dụng.', 'The configured model is unavailable.'],
-    QUOTA_EXCEEDED: ['Các nhà cung cấp khả dụng đã đạt hạn mức. Vui lòng đợi rồi thử lại.', 'Available providers have reached their limits. Please wait before retrying.'],
-    TIMEOUT: ['Phân tích mất quá nhiều thời gian. Vui lòng thử lại.', 'Analysis took too long. Please try again.'],
-    NETWORK_ERROR: ['Không thể kết nối dịch vụ phân tích.', 'Could not reach the analysis service.'],
-    INVALID_REQUEST: ['Cấu hình yêu cầu chưa hợp lệ.', 'The provider rejected the request configuration.'],
-    INVALID_RESPONSE: ['Phân tích chưa khớp đầy đủ với câu. Vui lòng thử lại.', 'The analysis did not cover the sentence correctly. Please retry.'],
-    INCOMPLETE_RESPONSE: ['Phân tích chưa hoàn chỉnh. Vui lòng thử lại.', 'The analysis was incomplete. Please retry.'],
-    REFUSAL: ['Nhà cung cấp không thể phân tích nội dung này.', 'The provider could not analyze this content.'],
-    PROVIDER_UNAVAILABLE: ['Dịch vụ tạm thời không khả dụng.', 'The service is temporarily unavailable.']
+    TIMEOUT: ['Tra nghĩa hơi lâu. Vui lòng thử lại.', 'This is taking a little longer. Please try again.'],
+    NETWORK_ERROR: ['Không thể kết nối. Vui lòng thử lại.', 'Could not connect. Please try again.'],
+    INVALID_RESPONSE: ['Chưa tìm được nghĩa phù hợp. Vui lòng thử lại.', 'Could not find the right meaning. Please try again.'],
+    INCOMPLETE_RESPONSE: ['Chưa tìm được nghĩa đầy đủ. Vui lòng thử lại.', 'Could not finish looking up this word. Please try again.'],
+    REFUSAL: ['Chưa thể tra nghĩa trong câu này. Hãy thử một câu khác.', 'Could not look up the meaning in this sentence. Try another sentence.']
   };
-  return (messages[code] || messages.PROVIDER_UNAVAILABLE)[locale === 'vi' ? 0 : 1];
+  return (messages[code] || unavailable)[locale === 'vi' ? 0 : 1];
 }
