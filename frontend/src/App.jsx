@@ -20,7 +20,7 @@ function AppContent() {
   const activeWordToken = pinnedToken || hoveredToken;
   const closeInfo = () => { setPinnedToken(null); setHoveredToken(null); };
   useEffect(() => {
-    if (!pinnedToken || !window.matchMedia('(max-width: 768px)').matches) return;
+    if (!pinnedToken) return;
     const frame = window.requestAnimationFrame(() => {
       document.querySelector('.word-info-wrapper')?.scrollIntoView({
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
