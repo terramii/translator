@@ -19,6 +19,16 @@ function AppContent() {
   const sourceLang = detectLanguage(inputText), targetLang = sourceLang === 'vi' ? 'en' : 'vi';
   const activeWordToken = pinnedToken || hoveredToken;
   const closeInfo = () => { setPinnedToken(null); setHoveredToken(null); };
+  useEffect(() => {
+    if (!pinnedToken || !window.matchMedia('(max-width: 768px)').matches) return;
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector('.word-info-wrapper')?.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+        block: 'start'
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [pinnedToken]);
   useEffect(() => { const timer = setTimeout(() => setToastMessage(''), 3000); return () => clearTimeout(timer); }, [toastMessage]);
   useEffect(() => { const listener = e => { if (e.key === 'Escape') closeInfo(); }; window.addEventListener('keydown', listener); return () => window.removeEventListener('keydown', listener); }, []);
   useEffect(() => {
