@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import TranslatorPanel from './components/TranslatorPanel';
 import WordInfoTab from './components/WordInfoTab';
@@ -33,7 +33,7 @@ function AppContent() {
     return () => { clearTimeout(timer); controller.abort(); };
   }, [inputText, sourceLang, targetLang, retry]);
   function pin(token) { if (pinnedToken?.start === token.start && pinnedToken?.sentence === token.sentence && pinnedToken?.lang === token.lang) setPinnedToken(null); else setPinnedToken(token); }
-  return <><div className="sky-clouds" aria-hidden="true"><span>☁️</span><span>☁️</span><span>☁️</span><span>☁️</span><span>☁️</span><span>☁️</span></div><div className="app-container"><Navbar />
+  return <><div className="sky-clouds" aria-hidden="true"><span /><span /><span /><span /><span /><span /></div><div className="app-container"><Navbar />
     <main>
       <TranslatorPanel inputText={inputText} setInputText={setInputText} translatedText={translatedText} sourceLang={sourceLang} targetLang={targetLang} detectedLang={sourceLang} onSwapLanguages={() => { if (translatedText) setInputText(translatedText); }} inputTokens={tokenizeText(inputText, sourceLang)} outputTokens={tokenizeText(translatedText, targetLang)} hoveredToken={hoveredToken} pinnedToken={pinnedToken} onWordHover={setHoveredToken} onWordClick={pin} isTranslating={isTranslating} translationError={translationError} onRetry={() => setRetry(n => n + 1)} showToast={setToastMessage} />
       {activeWordToken && <WordInfoTab key={`${activeWordToken.lang}:${activeWordToken.sentence}:${activeWordToken.start}`} token={activeWordToken} isPinned={!!pinnedToken} onClose={closeInfo} onTogglePin={() => pin(activeWordToken)} showToast={setToastMessage} />}

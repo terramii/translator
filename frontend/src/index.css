@@ -874,9 +874,13 @@ body { background-color: #e6f1ff; }
 }
 .sky-clouds span {
   position: absolute;
-  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
   font-size: clamp(48px, 6vw, 90px);
-  line-height: 1;
+  width: 2em;
+  aspect-ratio: 856 / 461;
+  background-image: url('../../data/cloud-base.png');
+  background-size: 202.33645% 100%;
+  background-position: left center;
+  background-repeat: no-repeat;
   opacity: .65;
 }
 .sky-clouds span:nth-child(1) { top: 17%; left: -20px; }
